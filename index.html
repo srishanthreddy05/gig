@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gig Solutions – Hyderabad's EV Mobility Partner</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white: #ffffff;
+      --off: #f7f7f5;
+      --off2: #eeede8;
+      --ink: #141410;
+      --ink2: #3a3a34;
+      --muted: #8a8a7e;
+      --green: #1a7a3c;
+      --green-light: #e8f5ed;
+      --green-mid: #2ea05a;
+      --gold: #b8860b;
+      --gold-light: #fdf8ec;
+      --border: #e4e4dc;
+      --shadow: 0 2px 24px rgba(20,20,16,0.07);
+      --shadow-lg: 0 8px 48px rgba(20,20,16,0.11);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem; color: var(--ink); letter-spacing: -0.5px;
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .logo-dot { color: var(--green); }
+    .logo-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.64rem; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      border: 1px solid var(--border); border-radius: 50px;
+      padding: 0.12rem 0.55rem; margin-left: 0.2rem;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--ink2); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links .contact-link { color: var(--green); font-weight: 600; }
+
+    /* HERO */
+    .hero-wrap {
+      background: var(--white);
+      padding-top: 5.5rem;
+    }
+    .hero {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+      padding: 4rem 3rem 4rem;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--green-light); border: 1px solid rgba(26,122,60,0.18);
+      border-radius: 50px; padding: 0.3rem 1rem;
+      font-size: 0.72rem; font-weight: 600; color: var(--green);
+      letter-spacing: 1.2px; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero-eyebrow::before { content: '⚡'; font-size: 0.85rem; }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.07; letter-spacing: -1.5px;
+      animation: fadeUp 0.6s 0.07s ease both;
+    }
+    .hero h1 em { font-style: italic; color: var(--green); }
+    .hero h1 .gold { color: var(--gold); }
+    .hero-sub {
+      margin-top: 1.3rem; color: var(--muted);
+      font-size: 1rem; line-height: 1.78; max-width: 430px;
+      animation: fadeUp 0.6s 0.14s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 0.9rem; margin-top: 2.2rem;
+      flex-wrap: wrap; animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .btn-dark {
+      background: var(--ink); color: #fff;
+      padding: 0.85rem 1.8rem; border-radius: 8px;
+      font-weight: 500; font-size: 0.9rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: all 0.22s;
+    }
+    .btn-dark:hover { background: #2a2a20; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(20,20,16,0.18); }
+    .btn-outline-dark {
+      background: transparent; color: var(--ink);
+      padding: 0.85rem 1.8rem; border-radius: 8px;
+      font-weight: 500; font-size: 0.9rem; text-decoration: none;
+      border: 1.5px solid var(--border);
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: all 0.22s;
+    }
+    .btn-outline-dark:hover { border-color: var(--ink); }
+
+    .hero-right { position: relative; animation: fadeUp 0.7s 0.1s ease both; }
+    .hero-img {
+      width: 100%; height: 520px; object-fit: cover;
+      border-radius: 22px; box-shadow: var(--shadow-lg);
+    }
+    .float-card-1 {
+      position: absolute; bottom: 2rem; left: -2rem;
+      background: var(--white); border-radius: 14px;
+      padding: 1rem 1.3rem; box-shadow: 0 8px 32px rgba(20,20,16,0.13);
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .float-icon {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: var(--green-light); display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .float-card-1 h5 { font-weight: 600; font-size: 0.85rem; }
+    .float-card-1 p { font-size: 0.72rem; color: var(--muted); margin-top: 0.05rem; }
+    .float-card-2 {
+      position: absolute; top: 1.5rem; right: -1.5rem;
+      background: var(--ink); border-radius: 14px;
+      padding: 1rem 1.3rem; box-shadow: 0 8px 30px rgba(20,20,16,0.22);
+    }
+    .float-card-2 .big-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; color: #fff; line-height: 1;
+    }
+    .float-card-2 .big-num span { color: var(--gold); }
+    .float-card-2 p { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 0.15rem; }
+
+    /* TICKER */
+    .ticker {
+      background: var(--ink); overflow: hidden; padding: 0.75rem 0;
+    }
+    .ticker-inner {
+      display: flex; gap: 3.5rem;
+      animation: marquee 30s linear infinite; white-space: nowrap;
+    }
+    .ticker span {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 2px;
+      color: rgba(255,255,255,0.4); text-transform: uppercase;
+    }
+    .ticker .sep { color: var(--green-mid); }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* SECTIONS */
+    .sec { padding: 6rem 3rem; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+
+    .label-row {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--green);
+      margin-bottom: 0.9rem;
+    }
+    .label-row::before { content: ''; width: 18px; height: 1.5px; background: var(--green); }
+
+    .sec-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1;
+      letter-spacing: -1px; color: var(--ink);
+    }
+    .sec-title em { font-style: italic; color: var(--green); }
+    .sec-sub {
+      color: var(--muted); font-size: 1rem; line-height: 1.75;
+      margin-top: 0.9rem; max-width: 480px;
+    }
+
+    /* EV SECTION */
+    .ev-sec { background: var(--off); }
+    .ev-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; margin-top: 3rem;
+    }
+    .ev-img-wrap { position: relative; }
+    .ev-img {
+      width: 100%; height: 400px; object-fit: cover;
+      border-radius: 18px; box-shadow: var(--shadow-lg);
+    }
+    .ev-badge {
+      position: absolute; top: 1.2rem; left: 1.2rem;
+      background: var(--green); color: #fff;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; padding: 0.28rem 0.75rem; border-radius: 50px;
+    }
+    .ev-price-chip {
+      position: absolute; bottom: 1.4rem; right: 1.4rem;
+      background: var(--white); border-radius: 12px;
+      padding: 0.85rem 1.15rem; box-shadow: var(--shadow);
+      text-align: right;
+    }
+    .ev-price-chip .chip-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem; color: var(--gold);
+    }
+    .ev-price-chip .chip-lbl { font-size: 0.7rem; color: var(--muted); margin-top: 0.05rem; }
+
+    .feat-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.3rem; }
+    .feat-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.1rem 1.2rem;
+      transition: border-color 0.2s, transform 0.22s, box-shadow 0.22s;
+    }
+    .feat-item:hover {
+      border-color: var(--green);
+      transform: translateX(4px);
+      box-shadow: 0 4px 18px rgba(26,122,60,0.08);
+    }
+    .feat-icon-box {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--green-light); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .feat-item h4 { font-weight: 600; font-size: 0.92rem; }
+    .feat-item p { font-size: 0.82rem; color: var(--muted); margin-top: 0.15rem; line-height: 1.5; }
+
+    .price-bar {
+      display: flex; align-items: center; gap: 1.5rem;
+      background: var(--gold-light); border: 1px solid rgba(184,134,11,0.2);
+      border-radius: 12px; padding: 1.1rem 1.4rem; margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .price-bar .pb-label { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+    .price-bar .pb-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem; color: var(--gold); line-height: 1;
+    }
+    .price-bar .pb-note { font-size: 0.72rem; color: var(--muted); }
+
+    /* FLEET */
+    .fleet-sec { background: var(--white); }
+    .fleet-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1.5rem; margin-top: 2.8rem;
+    }
+    .f-card {
+      border: 1px solid var(--border); border-radius: 18px;
+      overflow: hidden; background: var(--white);
+      transition: transform 0.28s, box-shadow 0.28s;
+    }
+    .f-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .f-card img { width: 100%; height: 190px; object-fit: cover; }
+    .f-body { padding: 1.2rem 1.4rem 1.5rem; }
+    .f-body h4 { font-weight: 600; font-size: 0.95rem; }
+    .f-body p { font-size: 0.81rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.5; }
+    .f-price {
+      display: flex; align-items: baseline; gap: 0.3rem; margin-top: 1rem;
+    }
+    .f-price .fa {
+      font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--green);
+    }
+    .f-price .fp { font-size: 0.77rem; color: var(--muted); }
+    .f-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      margin-top: 0.9rem; font-size: 0.81rem; font-weight: 600;
+      color: var(--green); text-decoration: none; transition: gap 0.2s;
+    }
+    .f-link:hover { gap: 0.6rem; }
+    .f-link::after { content: '→'; }
+
+    /* DELIVERY */
+    .delivery-sec { background: var(--off); }
+    .del-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; margin-top: 3rem;
+    }
+    .del-img-wrap { position: relative; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); }
+    .del-img-wrap img { width: 100%; height: 460px; object-fit: cover; display: block; }
+    .del-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(20,20,16,0.65), transparent);
+      padding: 2rem 1.5rem 1.5rem;
+    }
+    .del-overlay p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem; color: #fff; line-height: 1.3;
+    }
+    .del-overlay span { color: #f5c842; font-style: italic; }
+
+    .job-list { display: flex; flex-direction: column; gap: 1rem; }
+    .j-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.2rem 1.3rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
+    }
+    .j-card:hover {
+      border-color: var(--gold); transform: translateX(4px);
+      box-shadow: 0 4px 18px rgba(184,134,11,0.1);
+    }
+    .j-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--gold-light); border: 1px solid rgba(184,134,11,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .j-card h4 { font-weight: 600; font-size: 0.93rem; }
+    .j-card p { font-size: 0.81rem; color: var(--muted); margin-top: 0.15rem; line-height: 1.5; }
+
+    .earn-card {
+      background: var(--ink); border-radius: 16px;
+      padding: 1.5rem 1.6rem; margin-top: 1.3rem;
+      display: flex; gap: 1.5rem; align-items: center;
+    }
+    .earn-card .en {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: #f5c842; line-height: 1; white-space: nowrap;
+    }
+    .earn-card .el { font-size: 0.75rem; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; }
+    .earn-card .en2 { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.25rem; }
+
+    /* HOW */
+    .how-sec { background: var(--white); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1.5rem; margin-top: 2.8rem;
+    }
+    .s-card {
+      border: 1px solid var(--border); border-radius: 18px;
+      padding: 2rem 1.4rem; position: relative; overflow: hidden;
+      background: var(--white);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .s-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .s-bg-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4.5rem; color: var(--off2); line-height: 1;
+      position: absolute; top: 0.3rem; right: 0.8rem; user-select: none;
+    }
+    .s-emoji { font-size: 1.7rem; margin-bottom: 0.7rem; }
+    .s-card h4 { font-weight: 600; font-size: 0.94rem; }
+    .s-card p { font-size: 0.81rem; color: var(--muted); margin-top: 0.35rem; line-height: 1.55; }
+
+    /* COVERAGE */
+    .coverage-sec { background: var(--green); padding: 4rem 3rem; text-align: center; }
+    .coverage-sec h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem); color: #fff; letter-spacing: -0.5px;
+    }
+    .coverage-sec h2 span { color: #f5c842; font-style: italic; }
+    .stats-row {
+      display: flex; justify-content: center; gap: 4rem;
+      margin-top: 2.5rem; flex-wrap: wrap;
+    }
+    .stat .sv {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.7rem; color: #fff; line-height: 1;
+    }
+    .stat .sv sup { color: #f5c842; font-size: 1.5rem; }
+    .stat .sl { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 0.3rem; }
+
+    /* CTA */
+    .cta-sec { background: var(--off); padding: 6rem 3rem; text-align: center; }
+    .cta-sec h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem); letter-spacing: -1px; color: var(--ink);
+    }
+    .cta-sec h2 em { color: var(--green); font-style: italic; }
+    .cta-sec p { color: var(--muted); margin-top: 0.8rem; font-size: 1rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+
+    .btn-wa {
+      background: #25D366; color: #000;
+      padding: 0.9rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all 0.22s;
+    }
+    .btn-wa:hover { background: #1ebe5c; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.3); }
+    .btn-wa svg { width: 17px; height: 17px; }
+    .btn-call {
+      background: var(--white); color: var(--ink);
+      padding: 0.9rem 2rem; border-radius: 8px;
+      font-weight: 500; font-size: 0.9rem; text-decoration: none;
+      border: 1.5px solid var(--border);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all 0.22s;
+    }
+    .btn-call:hover { border-color: var(--ink); }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink); padding: 2.2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .f-logo-text {
+      font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #fff;
+    }
+    .f-logo-text span { color: #f5c842; font-style: italic; }
+    .f-copy { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+    .f-hyd { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+    .f-hyd b { color: var(--green-mid); font-weight: 500; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 3.5rem 1.5rem 3rem; gap: 2.5rem; }
+      .hero-right { order: -1; }
+      .hero-img { height: 300px; }
+      .float-card-2 { display: none; }
+      .ev-layout, .del-layout { grid-template-columns: 1fr; }
+      .fleet-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .sec { padding: 4rem 1.5rem; }
+      .coverage-sec, .cta-sec { padding: 3.5rem 1.5rem; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+      .price-bar { flex-wrap: wrap; gap: 0.8rem; }
+    }
+    @media (max-width: 520px) {
+      .fleet-grid, .steps-grid { grid-template-columns: 1fr; }
+      .float-card-1 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Gig<span class="logo-dot">.</span>Solutions<span class="logo-badge">Hyderabad</span></div>
+  <ul class="nav-links">
+    <li><a href="#ev-rent">EV Rentals</a></li>
+    <li><a href="#delivery">Delivery Jobs</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="https://wa.me/918019417722" target="_blank" class="contact-link">Contact →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">Hyderabad's Green Mobility Platform</div>
+      <h1>Ride <em>Electric.</em><br>Earn <span class="gold">Smart.</span></h1>
+      <p class="hero-sub">Rent electric vehicles or join our growing delivery fleet — zero fuel costs, flexible hours, and coverage across every corner of Hyderabad.</p>
+      <div class="hero-btns">
+        <a class="btn-dark" href="#ev-rent">⚡ Rent an EV</a>
+        <a class="btn-outline-dark" href="#delivery">🛵 Join as Rider</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Hero: delivery boy illustration -->
+      <img class="hero-img" src="https://img.freepik.com/premium-vector/flat-vector-logo-delivery-boy-green_300636-3675.jpg" alt="Delivery boy illustration" style="object-fit: contain; background: #f0faf4;" />
+      <div class="float-card-1">
+        <div class="float-icon">⚡</div>
+        <div>
+          <h5>100% Electric Fleet</h5>
+          <p>Zero fuel. Zero emissions.</p>
+        </div>
+      </div>
+      <div class="float-card-2">
+        <div class="big-num">50<span>+</span></div>
+        <p>Areas in Hyderabad</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Hyderabad</span><span class="sep"> ◆ </span>
+    <span>Banjara Hills</span><span class="sep"> ◆ </span>
+    <span>Madhapur</span><span class="sep"> ◆ </span>
+    <span>Gachibowli</span><span class="sep"> ◆ </span>
+    <span>Kondapur</span><span class="sep"> ◆ </span>
+    <span>Jubilee Hills</span><span class="sep"> ◆ </span>
+    <span>Secunderabad</span><span class="sep"> ◆ </span>
+    <span>Hi-Tech City</span><span class="sep"> ◆ </span>
+    <span>KPHB</span><span class="sep"> ◆ </span>
+    <span>Kukatpally</span><span class="sep"> ◆ </span>
+    <span>Hyderabad</span><span class="sep"> ◆ </span>
+    <span>Banjara Hills</span><span class="sep"> ◆ </span>
+    <span>Madhapur</span><span class="sep"> ◆ </span>
+    <span>Gachibowli</span><span class="sep"> ◆ </span>
+    <span>Kondapur</span><span class="sep"> ◆ </span>
+    <span>Jubilee Hills</span><span class="sep"> ◆ </span>
+    <span>Secunderabad</span><span class="sep"> ◆ </span>
+    <span>Hi-Tech City</span><span class="sep"> ◆ </span>
+    <span>KPHB</span><span class="sep"> ◆ </span>
+    <span>Kukatpally</span><span class="sep"> ◆ </span>
+  </div>
+</div>
+
+<!-- EV RENTAL -->
+<section id="ev-rent" class="sec ev-sec">
+  <div class="sec-inner">
+    <p class="label-row reveal">Electric Vehicle Rental</p>
+    <h2 class="sec-title reveal">Ride Electric Across <em>Every Corner</em><br>of the City of Pearls</h2>
+    <p class="sec-sub reveal">No fuel costs. No pollution. Just clean, affordable rides through Hyderabad — from Hi-Tech City to the lanes of the old city.</p>
+
+    <div class="ev-layout">
+      <div class="ev-img-wrap reveal">
+        <!-- EV rental section: Bajaj Chetak / electric scooter side view -->
+        <img class="ev-img" src="https://imgd.aeplcdn.com/1280x720/n/cw/ec/49744/r30-right-side-view-7.png?isig=0" alt="Electric scooter side view" style="object-fit: contain; background: #f7f7f5;" />
+        <span class="ev-badge">100% Electric</span>
+        <div class="ev-price-chip">
+          <div class="chip-val">₹XXX</div>
+          <div class="chip-lbl">Starting / day</div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="feat-list">
+          <div class="feat-item">
+            <div class="feat-icon-box">🔋</div>
+            <div>
+              <h4>Full Charge Guaranteed</h4>
+              <p>Every vehicle delivered fully charged — ready to cruise from Gachibowli to Secunderabad.</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon-box">📍</div>
+            <div>
+              <h4>Doorstep Delivery</h4>
+              <p>We deliver the EV to your location anywhere in Hyderabad. No pickup hassle, ever.</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon-box">🛡️</div>
+            <div>
+              <h4>Insured & Maintained</h4>
+              <p>All vehicles are insured, sanitized, and serviced before every single rental.</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon-box">💬</div>
+            <div>
+              <h4>24/7 WhatsApp Support</h4>
+              <p>Our Hyderabad team is always one message away — day or night.</p>
+            </div>
+          </div>
+        </div>
+        <div class="price-bar">
+          <div>
+            <p class="pb-label">Starting Rental Price</p>
+            <p class="pb-val">₹XXX</p>
+            <p class="pb-note">per day · all-inclusive</p>
+          </div>
+          <div style="margin-left:auto;">
+            <a class="btn-wa" href="https://wa.me/918019417722?text=Hi%20Gig%20Solutions!%20I%20want%20to%20rent%20an%20EV%20in%20Hyderabad." target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="sec fleet-sec">
+  <div class="sec-inner">
+    <p class="label-row reveal">Our Fleet</p>
+    <h2 class="sec-title reveal">Choose Your <em>Ride</em></h2>
+    <div class="fleet-grid">
+      <div class="f-card reveal">
+        <!-- Electric scooter fleet card -->
+        <img src="https://qz.com/cdn-cgi/image/width=1920,quality=85,format=auto/https://assets.qz.com/media/07c90331583817676eafcf76be238d25.jpg" alt="Electric Scooter" style="object-fit: cover;" />
+        <div class="f-body">
+          <h4>Electric Scooter</h4>
+          <p>Perfect for city commutes — zip through HITEC City traffic effortlessly</p>
+          <div class="f-price"><span class="fa">₹XXX</span><span class="fp">/ day</span></div>
+          <a class="f-link" href="https://wa.me/918019417722?text=Hi!%20I%20want%20to%20book%20an%20Electric%20Scooter." target="_blank">Book on WhatsApp</a>
+        </div>
+      </div>
+      <div class="f-card reveal">
+        <!-- Electric bike fleet card -->
+        <img src="https://obenev.s3.ap-south-1.amazonaws.com/1713843812050" alt="Electric Bike" style="object-fit: cover;" />
+        <div class="f-body">
+          <h4>Electric Bike</h4>
+          <p>Powerful and smooth — ideal for longer rides across the twin cities</p>
+          <div class="f-price"><span class="fa">₹XXX</span><span class="fp">/ day</span></div>
+          <a class="f-link" href="https://wa.me/918019417722?text=Hi!%20I%20want%20to%20book%20an%20Electric%20Bike." target="_blank">Book on WhatsApp</a>
+        </div>
+      </div>
+      <div class="f-card reveal">
+        <!-- Delivery EV fleet card -->
+        <img src="https://img.freepik.com/premium-vector/flat-vector-logo-delivery-boy-green_300636-3675.jpg" alt="Delivery EV" style="object-fit: contain; background: #f0faf4;" />
+        <div class="f-body">
+          <h4>Delivery EV</h4>
+          <p>Built for gig work — spacious cargo, long range, and reliable battery life</p>
+          <div class="f-price"><span class="fa">₹XXX</span><span class="fp">/ day</span></div>
+          <a class="f-link" href="https://wa.me/918019417722?text=Hi!%20I%20want%20to%20book%20a%20Delivery%20EV." target="_blank">Book on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- DELIVERY JOBS -->
+<section id="delivery" class="sec delivery-sec">
+  <div class="sec-inner">
+    <p class="label-row reveal">Delivery Opportunities</p>
+    <h2 class="sec-title reveal">Earn Daily Across <em>Hyderabad</em></h2>
+    <p class="sec-sub reveal">No bike? No problem. We provide the EV — you just deliver and earn every single day in your city.</p>
+
+    <div class="del-layout">
+      <div class="del-img-wrap reveal">
+        <!-- Gig delivery worker — replace src with your Shutterstock licensed image URL -->
+        <img src="https://images.unsplash.com/photo-1587613865763-4b8b0d19ce80?w=800&q=80" alt="Gig delivery worker" />
+        <div class="del-overlay">
+          <p>Your city.<br><span>Your income.</span></p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="job-list">
+          <div class="j-card">
+            <div class="j-icon">📦</div>
+            <div>
+              <h4>Parcel Delivery Partner</h4>
+              <p>Deliver packages across Hyderabad on your own schedule. Flexible hours, daily cash payouts.</p>
+            </div>
+          </div>
+          <div class="j-card">
+            <div class="j-icon">🍽️</div>
+            <div>
+              <h4>Food Delivery Rider</h4>
+              <p>Partner with top food apps — we supply the EV, you keep the commissions.</p>
+            </div>
+          </div>
+          <div class="j-card">
+            <div class="j-icon">🏪</div>
+            <div>
+              <h4>Hyperlocal Delivery</h4>
+              <p>Quick-commerce deliveries in your neighborhood — Banjara Hills, Kukatpally & beyond.</p>
+            </div>
+          </div>
+        </div>
+        <div class="earn-card">
+          <div>
+            <p class="el">Potential Daily Earnings</p>
+            <p class="en">₹XXX – ₹XXX</p>
+            <p class="en2">Based on hours worked. Zero fuel cost eating into your income.</p>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <a class="btn-wa" href="https://wa.me/918019417722?text=Hi%20Gig%20Solutions!%20I%20want%20to%20join%20as%20a%20delivery%20partner%20in%20Hyderabad." target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Apply on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="sec how-sec">
+  <div class="sec-inner" style="text-align:center;">
+    <p class="label-row reveal" style="justify-content:center;">Simple Process</p>
+    <h2 class="sec-title reveal">Up &amp; Running in <em>5 Minutes</em></h2>
+    <p class="sec-sub reveal" style="margin:0.8rem auto 0;">Getting started with Gig Solutions is as simple as sending a WhatsApp message.</p>
+
+    <div class="steps-grid">
+      <div class="s-card reveal">
+        <span class="s-bg-num">01</span>
+        <div class="s-emoji">💬</div>
+        <h4>WhatsApp Us</h4>
+        <p>Message us at 8019417722. Tell us what you need — rental or delivery job.</p>
+      </div>
+      <div class="s-card reveal">
+        <span class="s-bg-num">02</span>
+        <div class="s-emoji">📋</div>
+        <h4>Pick Your Plan</h4>
+        <p>We'll walk you through EV options or delivery openings in minutes.</p>
+      </div>
+      <div class="s-card reveal">
+        <span class="s-bg-num">03</span>
+        <div class="s-emoji">⚡</div>
+        <h4>Get Your EV</h4>
+        <p>We deliver the vehicle to your Hyderabad address — fully charged and ready.</p>
+      </div>
+      <div class="s-card reveal">
+        <span class="s-bg-num">04</span>
+        <div class="s-emoji">💰</div>
+        <h4>Ride &amp; Earn</h4>
+        <p>Start your commute or deliveries. Earn daily. Zero fuel cost. Pure profit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="coverage-sec">
+  <h2>Proudly Rooted in <span>Hyderabad</span> 🏙️</h2>
+  <div class="stats-row">
+    <div class="stat"><div class="sv">50<sup>+</sup></div><div class="sl">Areas Covered</div></div>
+    <div class="stat"><div class="sv">100<sup>%</sup></div><div class="sl">Electric Fleet</div></div>
+    <div class="stat"><div class="sv">₹<sup>0</sup></div><div class="sl">Fuel Cost for Riders</div></div>
+    <div class="stat"><div class="sv">24<sup>/7</sup></div><div class="sl">WhatsApp Support</div></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-sec">
+  <h2>Ready to Ride or <em>Earn?</em></h2>
+  <p>Join Hyderabad's fastest-growing EV mobility platform — it starts with one message.</p>
+  <div class="cta-btns">
+    <a class="btn-wa" href="https://wa.me/918019417722?text=Hi!%20I%20want%20to%20know%20more%20about%20Gig%20Solutions%20Hyderabad." target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat on WhatsApp
+    </a>
+    <a class="btn-call" href="tel:+918019417722">📞 Call 8019417722</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo-text">Gig<span>.Solutions</span></div>
+  <div class="f-copy">© 2025 Gig Solutions. All rights reserved.</div>
+  <div class="f-hyd">Made with ❤️ in <b>Hyderabad</b></div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
